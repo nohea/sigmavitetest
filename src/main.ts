@@ -151,7 +151,8 @@ renderer.getMouseCaptor()?.on("mousedown", () => {
 
 // When clicking on the stage, we add a new node and connect it to the closest node
 renderer.on("clickStage", ({ event }: { event: { x: number; y: number } }) => {
-  console.log("on clickStage");
+  console.log("on clickStage (disabled)");
+  return; // DISABLED
   // Sigma (ie. graph) and screen (viewport) coordinates are not the same.
   // So we need to translate the screen x & y coordinates to the graph one by calling the sigma helper `viewportToGraph`
   const coordForGraph = renderer.viewportToGraph({ x: event.x, y: event.y });
@@ -180,4 +181,5 @@ renderer.on("clickStage", ({ event }: { event: { x: number; y: number } }) => {
 
   // We create the edges
   closestNodes.forEach((e) => graph.addEdge(id, e.nodeId));
+
 });
